@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+  display: block;
+  min-height: 100vh;
+}
+
+.grid {
+  display: flex;
+  grid-gap: 20px;
+}
+
+.AppBar {
+  top: 0;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.121);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.125);
+}
+
+.AppBar img{
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+}
+
+.typography{
+  background-color: rgb(255, 255, 255);
+  font-size: 3rem;
+  padding: 5px;
+  color: rgb(9, 190, 230);
+}
+
+.grow {
+  margin: auto;
+  margin-top: 100px;
+  width: 90%;
+  display: grid;
+}
+
+.item1 {
+  display: block;
+  margin-left: 10px;
+  width: 40%;
+}
+
+.item2{
+  width: 30%;
+  margin-right: 10px;
+  margin-left: auto;
+}

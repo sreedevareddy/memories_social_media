@@ -1,31 +1,41 @@
-import React from 'react';
-import {Container, AppBar, Typography, Grow, Grid} from '@material-ui/core'
-import Posts from './components/Posts/Posts';
-import Form from './components/Form/Form';
+import React, {useEffect} from "react";
+import { useDispatch } from "react-redux";
+// import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
+import Posts from "./components/Posts/Posts";
+import Form from "./components/Form/Form";
+import {getPosts} from './actions/posts'
 
-import memories from './images/memories.png';
+import './styles.css';
+
+import memories from "./images/memories.png";
 
 const App = () => {
-    return (
-        <Container maxWidth="lg">
-            <AppBar position='static' color='inherit'>
-                <Typography variant='h2' align='center'>Memories</Typography>
-                <img src={memories} alt="memories" height="420" />
-            </AppBar>
-            <Grow in>
-                <Container>
-                    <Grid container justify='space-between' alignItems='stretch' spacing={3}>
-                        <Grid item xs={12} sm={7}>
-                            <Posts />
-                        </Grid>
-                        <Grid item xs={12} sm={4}>
-                            <Form />
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Grow>
-        </Container>
-    );
-}
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+
+
+  return (
+    <div className="container">
+      <div className="AppBar">
+        <div className="typography">Memories</div>
+        <img src={memories} alt="memories" />
+      </div>
+      <div className="grow">
+        <div className="container">
+          <div className="grid">
+            <div className="grid item1">
+              <Posts />
+            </div>
+            <div className="grid item2">
+              <Form />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;
