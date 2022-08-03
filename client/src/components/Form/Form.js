@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import FileBase from 'react-file-base64';
+import { useDispatch } from "react-redux";
+import FileBase from "react-file-base64";
 
-import './styles.css';
+import "./styles.css";
+import { createPost } from "../../actions/posts";
 
 const Form = () => {
   const [postData, setPostData] = useState({
@@ -12,7 +14,14 @@ const Form = () => {
     selectedFiles: "",
   });
 
-  const handleSubmit = () => {};
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(createPost(postData));
+  };
+
   const clear = () => {};
 
   return (
@@ -39,9 +48,7 @@ const Form = () => {
           name="title"
           id="title"
           value={postData.title}
-          onChange={(e) =>
-            setPostData({ ...postData, title: e.target.value })
-          }
+          onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
         <input
           type="text"
@@ -57,22 +64,26 @@ const Form = () => {
           name="tags"
           id="tags"
           value={postData.tags}
-          onChange={(e) =>
-            setPostData({ ...postData, tags: e.target.value })
-          }
+          onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
         />
         <div className="fileinput">
-            <FileBase
-                type= "file"
-                multiple= {false}
-                onDone = {({base64}) => setPostData({ ...postData, selectedFiles : base64})}
-            />
+          <FileBase
+            type="file"
+            multiple={false}
+            onDone={({ base64 }) =>
+              setPostData({ ...postData, selectedFiles: base64 })
+            }
+          />
         </div>
-        <button type="submit" id="submitBtn" className="btn">Submit</button>
-        <button onClick={clear} id="clearBtn" className="btn">Clear</button>
+        <button type="submit" id="submitBtn" className="btn">
+          Submit
+        </button>
+        <button onClick={clear} id="clearBtn" className="btn">
+          Clear
+        </button>
       </form>
     </div>
   );
-};  
+};
 
 export default Form;
