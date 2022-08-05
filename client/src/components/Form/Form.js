@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import FileBase from "react-file-base64";
+import FileBase64 from "react-file-base64";
 
 import "./styles.css";
-import { createPost } from "../../actions/posts";
+import { createPost, updatePost } from "../../actions/posts";
 
 const Form = () => {
   const [postData, setPostData] = useState({
@@ -18,8 +18,12 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(currentId){
+      dispatch(updatePost(currentId, postData));
+    }else{
+      dispatch(createPost(postData));
+    }
 
-    dispatch(createPost(postData));
   };
 
   const clear = () => {};
@@ -35,6 +39,7 @@ const Form = () => {
       >
         <h2 className="memtitle">Creating a memory</h2>
         <input
+          placeholder="Creator"
           type="text"
           name="creator"
           id="creator"
@@ -44,6 +49,7 @@ const Form = () => {
           }
         />
         <input
+          placeholder="Title"
           type="text"
           name="title"
           id="title"
@@ -52,6 +58,7 @@ const Form = () => {
         />
         <input
           type="text"
+          placeholder="Message"
           name="message"
           id="message"
           value={postData.message}
@@ -61,14 +68,14 @@ const Form = () => {
         />
         <input
           type="text"
+          placeholder="Tags"
           name="tags"
           id="tags"
           value={postData.tags}
           onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
         />
         <div className="fileinput">
-          <FileBase
-            type="file"
+          <FileBase64
             multiple={false}
             onDone={({ base64 }) =>
               setPostData({ ...postData, selectedFiles: base64 })

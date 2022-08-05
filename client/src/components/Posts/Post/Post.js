@@ -1,34 +1,25 @@
 import React from "react";
 import "./styles.css";
 
-const Post = ({post}) => {
+const Post = ({ post, setCurrentID }) => {
   return (
     <div className="card">
-      <div className="card-header">
-        <div className="profile">
-          <span className="letter">{post.creator}</span>
-        </div>
-        <div className="card-title-group">
-          <h5 className="card-title">{post.title}</h5>
-        </div>
+      <img className="card-image" src={post.selectedFiles} alt="postimage" />
+      <div className="card-title-group">
+        <h2 className="card-title">{post.title}</h2>
       </div>
-      <img className="card-image" src={post.selectedFiles} alt="Logo" />
       <div className="card-text">{post.message}</div>
-      <div className="card-like-bar">
-        Like {!post.likeCount ? (
-          <img className="card-like-icon" src="https://img.icons8.com/ios/344/like--v1.png" alt="Logo" />
-        ) : (
-          <img className="card-like-icon" src="https://img.icons8.com/ios-filled/344/like--v1.png" alt="Logo" />
-        )}
-        <div className="like-text">
-          <b>{post.likeCount}</b>
-        </div>
-        <div>
-          {post.tags.map((tag) => (
-            `#${tag}`
-          ))}
-        </div>
-      </div>
+      <div className="card-tags">{post.tags.map((tag) => `#${tag}`)}</div>
+      <span className="creator">--{post.creator}</span>
+      <button className="btn like">
+        Likes <b>{post.likeCount}</b>
+      </button>
+      <button className="btn delete">
+        Delete
+      </button>
+      <button onClick={() => {setCurrentID(post._id)}} className="btn update">
+        Update
+      </button>
     </div>
   );
 };
