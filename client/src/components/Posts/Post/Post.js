@@ -1,7 +1,10 @@
 import React from "react";
 import "./styles.css";
+import {useDispatch} from 'react-redux';
+import {deletePost, likePost} from '../../../actions/posts';
 
 const Post = ({ post, setCurrentID }) => {
+  const dispatch = useDispatch();
   return (
     <div className="card">
       <img className="card-image" src={post.selectedFiles} alt="postimage" />
@@ -11,13 +14,13 @@ const Post = ({ post, setCurrentID }) => {
       <div className="card-text">{post.message}</div>
       <div className="card-tags">{post.tags.map((tag) => `#${tag}`)}</div>
       <span className="creator">--{post.creator}</span>
-      <button className="btn like">
+      <button onClick={() => dispatch(likePost(post._id))} className="btn like">
         Likes <b>{post.likeCount}</b>
       </button>
-      <button className="btn delete">
+      <button onClick={() => dispatch(deletePost(post._id))} className="btn delete">
         Delete
       </button>
-      <button onClick={() => {setCurrentID(post._id)}} className="btn update">
+      <button onClick={() => setCurrentID(post._id)} className="btn update">
         Update
       </button>
     </div>

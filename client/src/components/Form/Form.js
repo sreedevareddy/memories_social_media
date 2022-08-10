@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import FileBase64 from "react-file-base64";
 
 import "./styles.css";
 import { createPost, updatePost } from "../../actions/posts";
 
-const Form = () => {
+const Form = ({currentID, setCurrentID}) => {
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -14,19 +14,30 @@ const Form = () => {
     selectedFiles: "",
   });
 
+  const post = useSelector((state) => currentID ? state.posts.find((p) => p._id === currentID) : null);
+
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(currentId){
-      dispatch(updatePost(currentId, postData));
+    if(currentID){
+      dispatch(updatePost(currentID, postData));
     }else{
       dispatch(createPost(postData));
     }
-
+    clear();
   };
 
-  const clear = () => {};
+  useEffect(() => {
+    if(post){
+      setPostData(post);
+    }
+  }, [post])
+
+  const clear = () => {
+    setCurrentID(null);
+    setPostData({ creator: "", title: "", message: "", tags: "", selectedFiles: "" });
+  };
 
   return (
     <div className="container paper">
@@ -37,7 +48,7 @@ const Form = () => {
         className="form"
         onSubmit={handleSubmit}
       >
-        <h2 className="memtitle">Creating a memory</h2>
+        <h2 className="memtitle">${currentID ? 'Editing' : 'Creating'} a memory</h2>
         <input
           placeholder="Creator"
           type="text"
