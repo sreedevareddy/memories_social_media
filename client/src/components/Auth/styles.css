@@ -1,0 +1,54 @@
+.main {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.typography {
+  font-size: 3rem;
+  padding: 5px;
+  color: rgb(9, 190, 230);
+  text-align: center;
+}
+
+.auth_typography {
+  font-size: 3rem;
+  padding: 5px;
+  color: rgb(37, 37, 37);
+  background-color: white;
+  text-align: center;
+}
+
+.paper {
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  width: 350px;
+  height: fit-content;
+  box-shadow: 0px 0px 10px rgba(112, 112, 112, 0.527);
+}
+
+.avatar{
+  display: flex;
+  justify-content: center;
+}
+
+.avatar, img, .grid_auth, input, .form{
+  background-color: white;
+}
+
+.form{
+  display: block;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+.form > *{
+  background-color: white;
+}
+
+.btn:hover{
+  background-color: rgb(88, 209, 254);
+  border: 2px solid black;
+  cursor: pointer;
+  transform: scale(1.2);
+}

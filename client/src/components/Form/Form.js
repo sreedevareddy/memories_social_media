@@ -48,7 +48,7 @@ const Form = ({currentID, setCurrentID}) => {
         className="form"
         onSubmit={handleSubmit}
       >
-        <h2 className="memtitle">${currentID ? 'Editing' : 'Creating'} a memory</h2>
+        <h2 className="memtitle">{currentID ? 'Editing' : 'Creating'} a memory</h2>
         <input
           placeholder="Creator"
           type="text"

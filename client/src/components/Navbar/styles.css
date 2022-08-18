@@ -1,0 +1,41 @@
+.typography {
+  background-color: rgb(255, 255, 255);
+  font-size: 3rem;
+  padding: 5px;
+  color: rgb(9, 190, 230);
+  list-style: none;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.link{
+  position: relative;
+}
+
+.AppBar {
+  top: 0;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.121);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.125);
+}
+
+.AppBar img {
+  position: relative;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+}
+
+.toolBar{
+  position: absolute;
+  right: 20px;
+}
+
+.login{
+  background-color: rgb(9, 190, 230);
+}

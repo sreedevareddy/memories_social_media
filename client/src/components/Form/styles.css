@@ -5,21 +5,21 @@
 }
 
 form {
-  width: 100%;
   display: block;
 }
 
-input, .fileinput {
+input,
+.fileinput {
   width: 100%;
+  min-width: 256px;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   border-radius: 5px;
 }
 
-.btn{
-    padding: 10px;
-    margin: 2px;
-    border-radius: 5px;
+.btn {
+  padding: 10px;
+  margin: 2px;
+  border-radius: 5px;
 }
-

@@ -9,9 +9,9 @@ const Posts = ({setCurrentID}) => {
   console.log(posts);
 
   return posts.length ? (
-    <div className="container flex posts">
+    <div className="posts">
       {posts.map((post) => (
-        <div key={post._id} className="grid postitems">
+        <div key={post._id} className="postitems">
           <div className="post">
             <Post post={post} setCurrentID={setCurrentID} />
           </div>

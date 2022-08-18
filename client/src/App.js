@@ -1,42 +1,23 @@
-import React, {useState, useEffect} from "react";
-import { useDispatch } from "react-redux";
-// import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
-import Posts from "./components/Posts/Posts";
-import Form from "./components/Form/Form";
-import {getPosts} from './actions/posts'
+import React from "react";
 
-import './styles.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import memories from "./images/memories.png";
+import "./styles.css";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home/Home";
+import Auth from "./components/Auth/Auth";
 
 const App = () => {
-  const [currentID, setCurrentID] = useState(null)
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentID, dispatch]);
-
-
   return (
-    <div className="container">
-      <div className="AppBar">
-        <div className="typography">Memories</div>
-        <img src={memories} alt="memories" />
+    <BrowserRouter>
+      <div className="container">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/auth" element={<Auth />} />
+        </Routes>
       </div>
-      <div className="grow">
-        <div className="container">
-          <div className="grid">
-            <div className="grid item1">
-              <Posts setCurrentID={setCurrentID} />
-            </div>
-            <div className="grid item2">
-              <Form currentID={currentID} setCurrentID={setCurrentID} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </BrowserRouter>
   );
 };
 

@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
 app.use(cors());
 
 app.use("/posts", postRoutes);
+// app.use("/user", userRoutes);
 
 // mongodb
 const CONNECTION_URL = process.env.MONGOOSE_URI;

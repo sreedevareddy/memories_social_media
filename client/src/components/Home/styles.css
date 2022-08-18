@@ -1,0 +1,35 @@
+.grow {
+  margin: auto;
+  margin-top: 100px;
+  display: grid;
+}
+
+.grid {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  flex-wrap: wrap-reverse;
+}
+
+.typography {
+  background-color: rgb(255, 255, 255);
+  font-size: 3rem;
+  padding: 5px;
+  color: rgb(9, 190, 230);
+}
+
+.item1 {
+  flex-flow: column wrap;
+  flex: 70%;
+  width: 100%;
+  justify-content: space-around;
+  
+}
+
+.item2 {
+  flex-wrap: nowrap;
+  margin: 0;
+  flex: 30%;
+  max-width: 300px;
+  padding: 30px;
+}
