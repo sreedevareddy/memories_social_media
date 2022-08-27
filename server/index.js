@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from 'dotenv';
 
 import postRoutes from "./routes/post.js";
+import userRoutes from "./routes/users.js";
 
 const app = express();
 dotenv.config();
@@ -14,7 +15,7 @@ app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
 app.use(cors());
 
 app.use("/posts", postRoutes);
-// app.use("/user", userRoutes);
+app.use("/user", userRoutes);
 
 // mongodb
 const CONNECTION_URL = process.env.MONGOOSE_URI;
