@@ -5,6 +5,7 @@ import { deletePost, likePost } from "../../../actions/posts";
 
 const Post = ({ post, setCurrentID }) => {
   const dispatch = useDispatch();
+
   return (
     <div className="card">
       <img
@@ -16,7 +17,7 @@ const Post = ({ post, setCurrentID }) => {
       <div className="card-title-group">
         <h2 className="card-title">{post.title}</h2>
       </div>
-      <span className="creator">--{post.creator}</span>
+      <span className="creator">--{post.name}</span>
       <div className="card-text">{post.message}</div>
       <div className="card-tags">{post.tags.map((tag) => `#${tag}`)}</div>
       <button onClick={() => dispatch(likePost(post._id))} className="btn like">

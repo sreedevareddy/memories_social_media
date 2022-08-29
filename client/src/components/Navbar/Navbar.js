@@ -19,7 +19,7 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    const token = user?.token;
+    // const token = user?.token;
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
 
@@ -35,7 +35,7 @@ const Navbar = () => {
         {user ? (
           <div className="profile">
             <img
-              referrerpolicy="no-referrer"
+              referrerPolicy="no-referrer"
               className="avatar"
               src={user.result.imageUrl}
               alt="S"

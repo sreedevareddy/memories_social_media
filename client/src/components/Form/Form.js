@@ -4,10 +4,10 @@ import FileBase64 from "react-file-base64";
 
 import "./styles.css";
 import { createPost, updatePost } from "../../actions/posts";
+const user = JSON.parse(localStorage.getItem("profile"));
 
 const Form = ({currentID, setCurrentID}) => {
   const [postData, setPostData] = useState({
-    creator: "",
     title: "",
     message: "",
     tags: "",
@@ -21,11 +21,20 @@ const Form = ({currentID, setCurrentID}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(currentID){
-      dispatch(updatePost(currentID, postData));
+      dispatch(updatePost(currentID, {...postData, name: user?.result?.name}));
+
     }else{
-      dispatch(createPost(postData));
+      dispatch(createPost({...postData, name: user?.result?.name}));
     }
     clear();
+
+    if(!user?.result?.name){
+      return(
+        <div className="errors">
+          Please SignIn to create/view memories
+        </div>
+      )
+    }
   };
 
   useEffect(() => {
@@ -36,7 +45,7 @@ const Form = ({currentID, setCurrentID}) => {
 
   const clear = () => {
     setCurrentID(null);
-    setPostData({ creator: "", title: "", message: "", tags: "", selectedFiles: "" });
+    setPostData({ title: "", message: "", tags: "", selectedFiles: "" });
   };
 
   return (
@@ -49,7 +58,7 @@ const Form = ({currentID, setCurrentID}) => {
         onSubmit={handleSubmit}
       >
         <h2 className="memtitle">{currentID ? 'Editing' : 'Creating'} a memory</h2>
-        <input
+        {/* <input
           placeholder="Creator"
           type="text"
           name="creator"
@@ -58,7 +67,7 @@ const Form = ({currentID, setCurrentID}) => {
           onChange={(e) =>
             setPostData({ ...postData, creator: e.target.value })
           }
-        />
+        /> */}
         <input
           placeholder="Title"
           type="text"

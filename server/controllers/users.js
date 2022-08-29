@@ -17,11 +17,21 @@ export const signin = async (req, res) => {
         }
 
         const token = jwt.sign({email: existingUser.email, id: existingUser._id}, 'test', {expiresIn: "1h"});
+        
         res.status(200).json({result: existingUser, token});
 
     } catch (error) {
         res.status(500).json({message: "Something is not right now"});
+    }
+}
 
+export const signup = async (req, res) => {
+    const {email, password, confirmPassword, firstName, lastName} = req.body;
+
+    try {
+        const existingUser = await User.findOne({email});
+
+        
         if(existingUser){
             return res.status(400).json({message: "User already exists"});
         }
@@ -35,14 +45,6 @@ export const signin = async (req, res) => {
         const token = jwt.sign({email: result.email, id: result._id}, 'test', {expiresIn: "1h"});
 
         res.status(200).json({ result, token});
-    }
-}
-
-export const signup = async (req, res) => {
-    const {email, password, confirmPassword, firstName, lastName} = req.body;
-
-    try {
-        const existingUser = await User.findOne({email});
         
     } catch (error) {
         res.status(500).json({message: "Unable to login, Try again!!!"})
